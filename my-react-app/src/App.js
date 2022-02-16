@@ -1,6 +1,7 @@
 import styles from './App.module.css';
-import { Message, MessageForm, CatsList } from "./components";
+import { Message, MessageForm, CatsList, ButtonHead } from "./components";
 import { useState, useEffect } from "react";
+import { Switch, Route } from 'react-router-dom'
 
 const messageBot = { autor: 'Бот', message: 'Автоматическое сообщение' }
 
@@ -36,19 +37,44 @@ function App() {
   }, [messageList]);
 
   return (
-    <div className={styles.container}>
+    <>
+      <header className={styles.head}>
+        <div className={styles.headButtons}>
+          <ButtonHead Link='/'>Домашняя страница</ButtonHead>
+          <ButtonHead Link='/chats'>Чаты</ButtonHead>
+          <ButtonHead Link='/profile'>Профиль</ButtonHead>
+        </div>
+      </header>
 
-      <CatsList chatsList={chatsList}></CatsList>
+      <main>
+        <Switch>
+          <Route exact path='/'>
+            <p>Домашняя страница</p>
+          </Route>
 
-      <div className={styles.container_Message}>
+          <Route path='/chats'>
 
-        <Message text={messageList}></Message>
+            <div className={styles.container}>
+              <CatsList chatsList={chatsList}></CatsList>
+              <Switch>
+                <Route path='/chats/:chatId'>
+                  <div className={styles.container_Message}>
+                    <Message text={messageList} chatsList={chatsList}></Message>
+                    <MessageForm messageList={messageList} setMessageList={setMessageList}></MessageForm>
+                  </div>
+                </Route>
 
-        <MessageForm messageList={messageList} setMessageList={setMessageList}></MessageForm>
+                <Route>
+                  <h1>Выберите чат</h1>
+                </Route>
+              </Switch>
+            </div >
 
-      </div>
+          </Route>
 
-    </div >
+        </Switch>
+      </main>
+    </>
 
   );
 

@@ -15,4 +15,17 @@
 
 }
 
+.head {
+    background-color: cornflowerblue;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.headButtons {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
 

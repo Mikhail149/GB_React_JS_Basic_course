@@ -1,3 +1,7 @@
+* {     
+    text-decoration: none;
+}
+
 .container_Chats {
     width: 20%;
     border: solid 1px #474a51;
