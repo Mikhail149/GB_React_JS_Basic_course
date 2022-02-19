@@ -1,8 +1,10 @@
 import styles from './App.module.css';
-import { Message, MessageForm, CatsList, ButtonHead } from "./components";
+import { ButtonHead } from "./components";
 import { useState, useEffect } from "react";
 import { Switch, Route } from 'react-router-dom'
 import { Profile } from './routes/Profile'
+import { Chats } from './routes/Chats'
+import { Home } from './routes/Home'
 
 const messageBot = { autor: 'Бот', message: 'Автоматическое сообщение' }
 
@@ -49,28 +51,10 @@ function App() {
 
       <main>
         <Switch>
-          <Route exact path='/'>
-            <p>Домашняя страница</p>
-          </Route>
+          <Route exact path='/' component={Home} />
 
-          <Route path='/chats'>
-
-            <div className={styles.container}>
-              <CatsList chatsList={chatsList}></CatsList>
-              <Switch>
-                <Route path='/chats/:chatId'>
-                  <div className={styles.container_Message}>
-                    <Message text={messageList} chatsList={chatsList}></Message>
-                    <MessageForm messageList={messageList} setMessageList={setMessageList}></MessageForm>
-                  </div>
-                </Route>
-
-                <Route>
-                  <h1>Выберите чат</h1>
-                </Route>
-              </Switch>
-            </div >
-
+          <Route path='/chats' >
+            <Chats chatsList={chatsList} messageList={messageList} setMessageList={setMessageList} />
           </Route>
 
           <Route path='/profile' component={Profile} />

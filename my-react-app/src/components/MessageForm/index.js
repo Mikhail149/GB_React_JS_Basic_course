@@ -7,7 +7,6 @@ import TrapFocus from '@mui/material/Unstable_TrapFocus';
 import { styled } from '@mui/system';
 
 const CustomButton = styled(Button)((props) => {
-    console.log(props);
     return `
     border-radius: 10px;
     `

@@ -7,7 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from "react-router-dom";
 
-export function CatsList(props) {
+export function ChatsList(props) {
 
 
     return (<div className={styles.container_Chats} >

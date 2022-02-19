@@ -15,6 +15,7 @@ export const Profile = () => {
   return (
     <div>
       <h4>Profile</h4>
+      <label>Показать имя пользователя?</label>
       <input
         type='checkbox'
         checked={showName}
