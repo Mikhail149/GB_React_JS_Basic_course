@@ -6,7 +6,6 @@ import styles from './ButtonHead.module.css';
 
 
 const HeadButton = styled(Button)((props) => {
-    console.log(props);
     return `
     border-radius: 10px;
     `

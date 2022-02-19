@@ -2,6 +2,7 @@ import styles from './App.module.css';
 import { Message, MessageForm, CatsList, ButtonHead } from "./components";
 import { useState, useEffect } from "react";
 import { Switch, Route } from 'react-router-dom'
+import { Profile } from './routes/Profile'
 
 const messageBot = { autor: 'Бот', message: 'Автоматическое сообщение' }
 
@@ -71,6 +72,10 @@ function App() {
             </div >
 
           </Route>
+
+          <Route path='/profile' component={Profile} />
+
+
 
         </Switch>
       </main>
