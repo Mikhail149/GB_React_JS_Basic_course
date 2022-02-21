@@ -1,4 +1,4 @@
-import { CHANGE_PROFILE_SHOW_NAME } from './action';
+import { PROFILE_CHANGE_SHOW_NAME } from './action';
 
 const ititialState = {
   showName: false,
@@ -8,7 +8,7 @@ const ititialState = {
 
 export const profileReducer = (state = ititialState, action) => {
   switch (action.type) {
-    case CHANGE_PROFILE_SHOW_NAME:
+    case PROFILE_CHANGE_SHOW_NAME:
       return {
         ...state,
         showName: !state.showName

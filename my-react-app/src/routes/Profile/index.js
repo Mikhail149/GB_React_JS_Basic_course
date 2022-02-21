@@ -1,15 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { CHANGE_PROFILE_SHOW_NAME } from '../../store/profile/action';
+import { profileChangeShowName } from '../../store/profile/action';
+import { getUserFromProfile, getShowStatusFromProfile } from '../../store/profile/selector';
 
 export const Profile = () => {
   const dispatch = useDispatch();
-  const showName = useSelector((state) => state.showName);
-  const user = useSelector((state) => state.user);
+  const showName = useSelector(getShowStatusFromProfile);
+  const user = useSelector(getUserFromProfile);
 
   const setShowName = () => {
-    dispatch({
-      type: CHANGE_PROFILE_SHOW_NAME
-    })
+    dispatch(profileChangeShowName())
   }
 
   return (

@@ -2,15 +2,16 @@ import styles from './Chats.module.css';
 import { Message, MessageForm, ChatsList } from "../../components";
 import { Switch, Route } from 'react-router-dom'
 
-export const Chats = ({ chatsList, messageList, setMessageList }) => {
+export const Chats = () => {
+
   return (
     <div className={styles.container}>
-      <ChatsList chatsList={chatsList}></ChatsList>
+      <ChatsList />
       <Switch>
         <Route path='/chats/:chatId'>
           <div className={styles.container_Message}>
-            <Message text={messageList} chatsList={chatsList}></Message>
-            <MessageForm messageList={messageList} setMessageList={setMessageList}></MessageForm>
+            <Message />
+            <MessageForm />
           </div>
         </Route>
 

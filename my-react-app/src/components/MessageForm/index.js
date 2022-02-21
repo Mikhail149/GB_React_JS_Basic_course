@@ -5,6 +5,10 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import TrapFocus from '@mui/material/Unstable_TrapFocus';
 import { styled } from '@mui/system';
+import { useSelector, useDispatch } from 'react-redux';
+import { newMessageAction } from '../../store/messages/actions'
+import { useParams } from "react-router-dom";
+import { getUserFromProfile } from '../../store/profile/selector';
 
 const CustomButton = styled(Button)((props) => {
     return `
@@ -12,33 +16,29 @@ const CustomButton = styled(Button)((props) => {
     `
 })
 
+export const MessageForm = () => {
 
-
-export const MessageForm = (props) => {
-
-
+    const dispatch = useDispatch();
+    const user = useSelector(getUserFromProfile);;
     const [message, setMessage] = useState('');
-    const user = 'Автор 1';
+    const { chatId } = useParams();
 
-    function sendMessage(message, autor = user) {
+    function sendMessage(message, autor, chatId) {
         if (message !== '') {
-            props.setMessageList([...props.messageList, { autor: autor, message: message }]);
+            const messageId = chatId + 'mess' + Date.now();
+            dispatch(newMessageAction(message, autor, messageId, chatId))
             setMessage('');
         }
     }
 
     function onSubmit(event) {
         event.preventDefault();
-        sendMessage(message, 'Автор 1');
-
+        sendMessage(message, user, chatId);
     }
 
     function onChange(event) {
         setMessage(event.target.value);
     }
-
-
-
 
     return (
         <div className={styles.container}>
@@ -46,11 +46,8 @@ export const MessageForm = (props) => {
                 <TrapFocus open>
                     <input tabIndex={-1} value={message} onChange={onChange} placeholder="Введите сообщение" type='text' className={styles.input}></input>
                 </TrapFocus>
-
                 <CustomButton type="submit" variant="contained" size="large" endIcon={<SendIcon />}>Отправить</CustomButton>
-
             </form>
-
         </div >
     )
 }
