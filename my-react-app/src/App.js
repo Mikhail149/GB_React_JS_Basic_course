@@ -1,57 +1,32 @@
 import styles from './App.module.css';
-import { Message, MessageForm, CatsList } from "./components";
-import { useState, useEffect } from "react";
-
-const messageBot = { autor: 'Бот', message: 'Автоматическое сообщение' }
-
+import { ButtonHead } from "./components";
+import { Switch, Route } from 'react-router-dom'
+import { Profile } from './routes/Profile'
+import { Chats } from './routes/Chats'
+import { Home } from './routes/Home'
 
 function App() {
 
-  const chatsListinitialState = [
-    {
-      name: 'Чат 1',
-      id: 'idChat1'
-    },
-    {
-      name: 'Чат 2',
-      id: 'idChat2'
-    },
-    {
-      name: 'Чат 3',
-      id: 'idChat4'
-    }
-  ]
-
-  const [chatsList, setchatsList] = useState(chatsListinitialState);
-
-  const [messageList, setMessageList] = useState([]);
-
-  useEffect(() => {
-    if (messageList.length > 0 && messageList[messageList.length - 1].autor !== messageBot.autor) {
-      const clearId = setTimeout(() => setMessageList([...messageList, messageBot]), 1000);
-      return () => {
-        clearTimeout(clearId);
-      }
-    }
-  }, [messageList]);
-
   return (
-    <div className={styles.container}>
+    <>
+      <header className={styles.head}>
+        <div className={styles.headButtons}>
+          <ButtonHead Link='/'>Домашняя страница</ButtonHead>
+          <ButtonHead Link='/chats'>Чаты</ButtonHead>
+          <ButtonHead Link='/profile'>Профиль</ButtonHead>
+        </div>
+      </header>
 
-      <CatsList chatsList={chatsList}></CatsList>
-
-      <div className={styles.container_Message}>
-
-        <Message text={messageList}></Message>
-
-        <MessageForm messageList={messageList} setMessageList={setMessageList}></MessageForm>
-
-      </div>
-
-    </div >
-
+      <main>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/chats' >
+            <Chats />
+          </Route>
+          <Route path='/profile' component={Profile} />
+        </Switch>
+      </main>
+    </>
   );
-
 };
-
 export default App;

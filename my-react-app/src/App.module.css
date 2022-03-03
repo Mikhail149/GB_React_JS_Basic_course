@@ -4,15 +4,17 @@
     box-sizing: border-box;
 }
 
-.container {
-    width: 100%;
+.head {
+    background-color: cornflowerblue;
+    margin-bottom: 10px;
+    padding: 10px;
     display: flex;
     justify-content: center;
 }
 
-.container_Message {
-    width: 60%;
-
+.headButtons {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
 }
-
 
