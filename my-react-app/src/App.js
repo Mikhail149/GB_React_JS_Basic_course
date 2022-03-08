@@ -4,9 +4,21 @@ import { Switch, Route } from 'react-router-dom';
 import { Profile } from './routes/Profile';
 import { Chats } from './routes/Chats';
 import { Home } from './routes/Home';
-import {MiddleWareUsers} from './routes/MiddleWareUsers';
+import { MiddleWareUsers } from './routes/MiddleWareUsers';
+import { Login } from './routes/Login';
+import { getIsAuth } from './store/User/selector';
+import { initAuthAction } from './store/User/action';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+
 
 function App() {
+  const isAuth = useSelector(getIsAuth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(initAuthAction);
+  }, []);
 
   return (
     <>
@@ -16,6 +28,7 @@ function App() {
           <ButtonHead Link='/chats'>Чаты</ButtonHead>
           <ButtonHead Link='/profile'>Профиль</ButtonHead>
           <ButtonHead Link='/middlewareUsers'>Пользователи Миддлвар</ButtonHead>
+          <ButtonHead Link='/login'>Логин</ButtonHead>
         </div>
       </header>
 
@@ -27,6 +40,7 @@ function App() {
           </Route>
           <Route path='/profile' component={Profile} />
           <Route path='/middlewareUsers' component={MiddleWareUsers} />
+          <Route path='/login' component={Login} />
         </Switch>
       </main>
     </>
