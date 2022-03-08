@@ -1,9 +1,10 @@
 import styles from './App.module.css';
 import { ButtonHead } from "./components";
-import { Switch, Route } from 'react-router-dom'
-import { Profile } from './routes/Profile'
-import { Chats } from './routes/Chats'
-import { Home } from './routes/Home'
+import { Switch, Route } from 'react-router-dom';
+import { Profile } from './routes/Profile';
+import { Chats } from './routes/Chats';
+import { Home } from './routes/Home';
+import {MiddleWareUsers} from './routes/MiddleWareUsers';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <ButtonHead Link='/'>Домашняя страница</ButtonHead>
           <ButtonHead Link='/chats'>Чаты</ButtonHead>
           <ButtonHead Link='/profile'>Профиль</ButtonHead>
+          <ButtonHead Link='/middlewareUsers'>Пользователи Миддлвар</ButtonHead>
         </div>
       </header>
 
@@ -24,6 +26,7 @@ function App() {
             <Chats />
           </Route>
           <Route path='/profile' component={Profile} />
+          <Route path='/middlewareUsers' component={MiddleWareUsers} />
         </Switch>
       </main>
     </>

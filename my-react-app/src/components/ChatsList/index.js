@@ -44,9 +44,9 @@ export function ChatsList() {
         <List >
             {chatListState.map((chat, index) =>
                 <>
-                    <Link to={`/chats/${chat.id}`} key={chat.name}>
+                    <Link to={`/chats/${chat.id}`} key={index}>
                         <ListItem disablePadding>
-                            <ListItemButton >
+                            <ListItemButton key={`${chat.name}.${index}`}>
                                 <ListItemIcon >
                                     <PersonIcon />
                                 </ListItemIcon>
