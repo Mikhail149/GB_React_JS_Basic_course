@@ -2,8 +2,8 @@ import { PROFILE_CHANGE_SHOW_NAME } from './action';
 
 const ititialState = {
   showName: false,
-  user: 'User',
-  userID: '#1',
+  user: '',
+  userID: '',
 }
 
 export const profileReducer = (state = ititialState, action) => {

@@ -1,12 +1,12 @@
 import { MESSAGES_NEW_MESSAGE_USER, MESSAGES_REMOVE_MESSAGES_TOGETHER_CHAT } from './actions';
 
-const initialState = {
+export const initialState = {
   messagesList: {}
 };
 
 export const messagesReduser = (state = initialState, action) => {
 
-  switch (action.type) {
+  switch (action?.type) {
     case MESSAGES_NEW_MESSAGE_USER: {
 
       const currentMessages = state.messagesList[action.payload.chatId] || [];
